@@ -10,4 +10,4 @@ class ExpertAdmin(admin.ModelAdmin):
 
 @admin.register(Tutorial)
 class TutorialAdmin(admin.ModelAdmin):
-    list_display = 'name', 'expert', 'hours', 'updated'
+    list_display = 'title', 'expert', 'hours', 'updated'

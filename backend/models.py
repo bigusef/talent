@@ -13,7 +13,7 @@ class Expert(models.Model):
     name = models.CharField(max_length=50)
     university = models.CharField(max_length=50)
     department = models.CharField(max_length=100)
-    img = models.ImageField(upload_to=upload_dir)
+    img = models.ImageField(upload_to=upload_dir, null=True, blank=True)
     rate = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(5.0)])
     timestamps = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True, verbose_name='Last Update')
@@ -29,8 +29,8 @@ class Expert(models.Model):
 
 
 class Tutorial(models.Model):
-    name = models.CharField(max_length=150)
     expert = models.OneToOneField(Expert, on_delete=models.CASCADE)
+    title = models.CharField(max_length=150)
     hours = models.IntegerField()
     price = models.IntegerField()
     description = models.TextField()
@@ -38,4 +38,4 @@ class Tutorial(models.Model):
     updated = models.DateTimeField(auto_now=True, verbose_name='Last Update')
 
     def __str__(self):
-        return self.name
+        return self.title
