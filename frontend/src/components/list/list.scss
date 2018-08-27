@@ -1,0 +1,42 @@
+@import '../../variables';
+
+.card-list {
+    .add-new {
+        color: $primary-font-color;
+        text-decoration: none;
+    }
+    
+    .total-resualt span {
+        font-size: $font-size-small;
+    }
+
+    .count-info {
+        padding-bottom: 30px;
+        
+        span:first-child{
+            font-size: $font-size-small;
+            font-weight: 400;
+            color: rgba($primary-font-color, 0.5);
+            text-transform: capitalize;
+        }
+
+        span:last-child {
+            font-size: $font-size-small;
+            font-weight: 600;
+
+        }
+    }
+
+    .load-more {
+        border: none;
+        box-shadow: none;
+        outline: none;
+        padding: 15px 25px;
+        background-color: $color-btn-bg;
+        color: $color-btn-font;
+        text-transform: uppercase;
+        font-size: $font-size-small;
+        font-weight: 600;
+        cursor: pointer;
+    }
+}

@@ -1,8 +1,38 @@
-$color: #2196F3;
+@import 'variables';
+@import 'flaticon/flaticon';
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  background-color: $color;
+.wrapper {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    color: $primary-font-color;
+
+    .header {
+        h1 {
+            display: flex;
+            align-items: center;
+            margin: 0;
+
+            span, small {
+                text-shadow: 0 0 8px rgba($primary-font-color, .4)
+            }
+
+            small {
+                margin-left: auto;
+            }
+        }
+    }
+
+    .inner-page {
+        height: calc(100vh - 85px);
+        padding-top: 15px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .footer {
+        font-size: $font-size-small;
+        text-shadow: 0 0 8px rgba($primary-font-color, .4);
+        border-top: 1px solid $color-secondary;
+        padding-top: 5px;
+    }
 }

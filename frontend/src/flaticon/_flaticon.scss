@@ -1,0 +1,51 @@
+/*
+Flaticon icon font: Flaticon
+Creation date: 26/08/2018 17:55
+*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: local('Flaticon'), url('./flaticon/Flaticon.eot') format('eot');
+  src: local('Flaticon'), url('./flaticon/Flaticon.eot?#iefix') format('eembedded-opentypeot'),
+  url('./flaticon/Flaticon.woff') format('woff'),
+  url('./flaticon/Flaticon.ttf') format('truetype'),
+  url("./flaticon/Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: local('Flaticon'), url("./flaticon/Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before,
+[class*=" flaticon-"]:before,
+[class^="flaticon-"]:after,
+[class*=" flaticon-"]:after{
+  display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.flaticon-plus:before { content: "\f100"; }
+.flaticon-edit:before { content: "\f101"; }
+.flaticon-remove:before { content: "\f102"; }
+.flaticon-euro:before { content: "\f103"; }
+
+
+$font-Flaticon-plus: "\f100";
+$font-Flaticon-edit: "\f101";
+$font-Flaticon-remove: "\f102";
+$font-Flaticon-euro: "\f103";

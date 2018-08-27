@@ -1,0 +1,103 @@
+@import '../../variables';
+
+.card-item {
+	margin-bottom: 30px;
+	box-shadow: 0 0 25px 5px rgba($color-success, 0.3);
+
+	img.avatar {
+		width: 90px;
+		height: 90px;
+		margin-bottom: 15px;
+		object-fit: contain;
+		border-radius: 50%;
+    }
+    
+    .info {
+        h2 {
+            margin: 10px 0 0;
+            font-size: $font-size-larg;
+            font-weight: 500;
+        }
+
+        .personal-info {
+            padding-bottom: 15px;
+            display: flex;
+            align-items: stretch;
+
+            span {
+                font-weight: 200;
+                font-size: $font-size-xs;
+                color: rgba($primary-font-color, 0.5);
+                align-self: flex-end;
+                padding: 0 10px;
+            }
+        }
+
+        h3 {
+            font-weight: 400;
+            font-size: $font-size-base;
+        }
+
+        .desc {
+            margin: 0;
+            font-weight: 200;
+            font-size: $font-size-small;
+            color: rgba($primary-font-color, 0.5);
+        }
+    }
+
+	.price {
+		color: $color-success;
+		font-weight: bolder;
+        font-size: 29px;
+        text-align: right;
+
+        div {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+		& > span {
+            font-size: $font-size-small;
+            font-weight: 900;
+
+			&:first-child {
+				padding-right: 2px;
+            }
+            &:last-child {
+                padding-left: 2px;
+            }
+		}
+	}
+
+	.action-btn {
+		margin-top: auto;
+
+		& > a,
+		& > span {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 50px;
+            height: 50px;
+            &:before {
+                font-size: $font-size-title;
+            }
+        }
+        
+		.flaticon-edit {
+			background-color: $color-success;
+			color: $color-light;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        
+		.flaticon-remove {
+			background-color: $color-danger;
+			color: $color-light;
+			border: none;
+            box-shadow: none;
+            cursor: pointer;
+		}
+	}
+}
