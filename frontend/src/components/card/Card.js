@@ -7,7 +7,7 @@ import './card.scss';
 import avartarImg from '../../images/avatar.png';
 
 const Card = ({person}) => {
-    const get_avatar = (img) => img?<img className='avatar' src={img} />:<img className='avatar' src={avartarImg} />
+    const get_avatar = (img) => img?<img alt={person.name} className='avatar' src={img} />:<img alt={person.name} className='avatar' src={avartarImg} />
 
     return (
         <div className='card-item row p-3'>
