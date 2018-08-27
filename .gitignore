@@ -47,3 +47,5 @@ instance/
 ### SASS and SCSS ###
 .sass-cache/
 *.css.map
+
+**/webpack-stats.dev.json
