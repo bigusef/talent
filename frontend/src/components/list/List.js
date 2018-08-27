@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import {connect} from 'react-redux';
 
-import Card from '../card/Card';
+import {title} from '../../actions';
 import './list.scss';
+import Card from '../card/Card';
 
 class List extends Component {
 	state = {
@@ -13,6 +15,7 @@ class List extends Component {
 	}
 
 	componentDidMount() {
+		this.props.title('List');
 		axios.get(`api/`)
 		.then(({data}) => {
 			this.setState({
@@ -45,6 +48,18 @@ class List extends Component {
 		}
 	}
 
+	getSortType = (e) => {
+		const sort_type =e.target.value; 
+		axios.get(`api/?order_by=${sort_type}`)
+		.then(({data}) => {
+			this.setState({
+				experts: data.results,
+				nextPageLink: data.next
+			});
+			console.log(this.state)
+		});
+	}
+
 	render() {
 		return (
 			<div className='col-9 card-list'>
@@ -52,15 +67,15 @@ class List extends Component {
 					<div className='col-6 total-resualt'>
 						<span><b>{this.state.count} experts</b> matching your search</span>
 					</div>
-					<div className='col-auto ml-auto'>
+					<div className='col-auto ml-auto lien-under'>
 						<span>Sort By </span>
-						<select>
-							<option>Name</option>
-							<option>Joined Date</option>
-							<option>Popularity</option>
+						<select className='custome-select' onChange={this.getSortType}>
+							<option value='timestamp'>Joined Date</option>
+							<option value='rate'>Popularity</option>
+							<option value='name'>Name</option>
 						</select>
 					</div>
-					<div className='col-auto'>
+					<div className='col-auto lien-under'>
 						<Link className='flaticon-plus add-new' to="/add"></Link>
 					</div>
 				</div>
@@ -81,4 +96,4 @@ class List extends Component {
 	}
 }
 
-export default List;
+export default connect(null, {title})(List);

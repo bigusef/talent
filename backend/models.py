@@ -15,7 +15,7 @@ class Expert(models.Model):
     department = models.CharField(max_length=100)
     img = models.ImageField(upload_to=upload_dir, null=True, blank=True)
     rate = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(5.0)])
-    timestamps = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True, verbose_name='Last Update')
 
     def __str__(self):
@@ -34,7 +34,7 @@ class Tutorial(models.Model):
     hours = models.IntegerField()
     price = models.IntegerField()
     description = models.TextField()
-    timestamps = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True, verbose_name='Last Update')
 
     def __str__(self):

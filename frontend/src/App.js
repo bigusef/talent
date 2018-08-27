@@ -6,20 +6,10 @@ import List from './components/list/List';
 import Add from './components/add/Add';
 
 class App extends Component {
-	state = {
-		title: ''
-	}
-
-	handleTitle = (newTitle) => {
-		this.setState({
-			title: newTitle,
-		})
-	}
-
 	render() {
 		return (
 			<div className='wrapper'>
-				<Header pageTitle={this.state.title} />
+				<Header />
 				<div className="container inner-page">
 					<div className="row justify-content-center">
 						<BrowserRouter>

@@ -19,7 +19,10 @@ class ExpertListView(ListCreateAPIView):
     def get_queryset(self):
         if self.request.method == 'GET' and 'order_by' in self.request.GET:
             order = self.request.GET.get('order_by')
-            queryset = Expert.objects.all().order_by(f'-{order}')
+            if(order == 'rate'):
+                queryset = Expert.objects.all().order_by(f'-{order}')
+            else:
+                queryset = Expert.objects.all().order_by(order)
         else:
             queryset = Expert.objects.all()
         return queryset

@@ -1,6 +1,28 @@
 @import '../../variables';
 
 .card-list {
+    .lien-under {
+        position: relative;
+
+        &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: calc(100% + 5px);
+            right: 0;
+            left: 0;
+            height: 1px;
+            background-color: $color-success;
+        }
+    }
+
+    select.custome-select {
+        background: transparent;
+        border: none;
+        outline: none;
+        color: $color-success;
+    }
+
     .add-new {
         color: $primary-font-color;
         text-decoration: none;

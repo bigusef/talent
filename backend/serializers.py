@@ -5,8 +5,8 @@ from .models import Expert, Tutorial
 class TutorialSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tutorial
-        fields = 'pk', 'title', 'hours', 'price', 'description', 'timestamps', 'updated'
-        read_only = 'timestamps', 'updated'
+        fields = 'pk', 'title', 'hours', 'price', 'description', 'timestamp', 'updated'
+        read_only = 'timestamp', 'updated'
 
 
 class ExpertSerializer(serializers.ModelSerializer):
@@ -14,8 +14,8 @@ class ExpertSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Expert
-        fields = 'pk', 'name', 'university', 'department', 'img', 'rate', 'tutorial', 'timestamps', 'updated'
-        read_only = 'timestamps', 'updated'
+        fields = 'pk', 'name', 'university', 'department', 'img', 'rate', 'tutorial', 'timestamp', 'updated'
+        read_only = 'timestamp', 'updated'
 
     def create(self, validated_data):
         tutorial_data = validated_data.pop('tutorial')
