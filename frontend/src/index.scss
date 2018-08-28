@@ -12,19 +12,24 @@
             align-items: center;
             margin: 0;
 
-            span, small {
-                text-shadow: 0 0 8px rgba($primary-font-color, .4)
+            a, small {
+                color: $primary-font-color;
+                text-decoration: none;
+                text-shadow: 0 0 8px rgba($primary-font-color, .4);
             }
 
             small {
                 margin-left: auto;
+                font-weight: 200;
+                font-size: 25px;
             }
         }
     }
 
     .inner-page {
-        height: calc(100vh - 85px);
+        height: calc(100vh - 110px);
         padding-top: 15px;
+        padding-bottom: 15px;
         overflow-y: auto;
         overflow-x: hidden;
     }

@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 
 const Header = ({ title }) => {
 	return (
-		<div className="container header">
+		<div className="container header pt-3 pb-3">
 			<div className="row justify-content-center">
 				<div className="col-9">
 					<h1>
-						<span>Tanelts</span>
+						<a href='/'>Tanelts</a>
 						<small>{title}</small>
 					</h1>
 				</div>

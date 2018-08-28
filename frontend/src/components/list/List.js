@@ -15,7 +15,7 @@ class List extends Component {
 	}
 
 	componentDidMount() {
-		this.props.title('List');
+		this.props.title('Talents List');
 		axios.get(`api/`)
 		.then(({data}) => {
 			this.setState({
