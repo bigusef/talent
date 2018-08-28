@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import StarRatings from 'react-star-ratings';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import _ from 'lodash';
+import axios from 'axios';
 
 import './add.scss';
 import { title } from '../../actions/global';
@@ -12,28 +14,20 @@ class Add extends Component {
 			name: '',
 			university: '',
 			department: '',
-			img: '',
 			rate: 0,
-			tutorial: {
-				title: '',
-				hours: '',
-				price: '',
-				description: ''
-			}
+			img: null,
+			title: '',
+			hours: '',
+			price: '',
+			description: ''
 		},
-		errors: null
+		errors: null,
+		succeed: false,
 	};
 
 	componentDidMount() {
 		this.props.title('Add New Talent');
 	}
-
-	changeRating = newRating => {
-		this.setState({
-			data: { ...this.state.data, rate: newRating },
-			errors: { ...this.state.errors, rate:null}
-		});
-	};
 
 	formOnChange = e => {
 		const value = e.target.value;
@@ -41,25 +35,18 @@ class Add extends Component {
 
 		this.setState({
 			data: { ...this.state.data, [name]: value },
-			errors: { ...this.state.errors, [name]:null}
+			errors: { ...this.state.errors, [name]: null }
 		});
 	};
 
-	formOnChangeTutorial = e => {
-		const value = e.target.value;
-		const name = e.target.name;
-
+	changeRating = newRating => {
 		this.setState({
-			data: {
-				...this.state.data,
-				tutorial: {
-					...this.state.data.tutorial,
-					[name]: value
-				}
-			},
-			errors: { ...this.state.errors, [name]:null}
+			data: { ...this.state.data, rate: newRating },
+			errors: { ...this.state.errors, rate: null }
 		});
 	};
+
+	handlerFile = e => this.setState({ ...this.state.data, img: e.target.files[0] });
 
 	validateDate = () => {
 		const { data } = this.state;
@@ -81,19 +68,19 @@ class Add extends Component {
 			errors.rate = 'Rate is Required';
 		}
 
-		if (!data.tutorial.title) {
+		if (!data.title) {
 			errors.title = 'Tutorial Title is Required';
 		}
 
-		if (!data.tutorial.hours) {
+		if (!data.hours) {
 			errors.hours = 'Tutorial Hours is Required';
 		}
 
-		if (!data.tutorial.price) {
+		if (!data.price) {
 			errors.price = 'Tutorial Price is Required';
 		}
 
-		if (!data.tutorial.description) {
+		if (!data.description) {
 			errors.description = 'Tutorial Description is Required';
 		}
 
@@ -111,7 +98,27 @@ class Add extends Component {
 			return;
 		}
 
-		console.log(this.state.data);
+		const formData = new FormData();
+		formData.append('name', this.state.data.name);
+		formData.append('university', this.state.data.university);
+		formData.append('department', this.state.data.department);
+		formData.append('rate', this.state.data.rate);
+		formData.append('img', this.state.img);
+		formData.append('tutorial.title', this.state.data.title);
+		formData.append('tutorial.hours', this.state.data.hours);
+		formData.append('tutorial.price', this.state.data.price);
+		formData.append('tutorial.description', this.state.data.description);
+
+		axios.defaults.xsrfCookieName = 'csrftoken';
+		axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+		axios
+			.post('api/', formData)
+			.then(res => {
+				this.setState({
+					succeed: true
+				})
+			})
+			.catch(error => console.log(error));
 	};
 
 	render() {
@@ -177,7 +184,9 @@ class Add extends Component {
 				<div className="form-group text-center">
 					<label className="d-flex align-items-center">
 						Rateing
-						<small className="text-danger ml-3">{this.state.errors && this.state.errors.rate}</small>
+						<small className="text-danger ml-3">
+							{this.state.errors && this.state.errors.rate}
+						</small>
 					</label>
 					<StarRatings
 						rating={this.state.data.rate}
@@ -193,8 +202,7 @@ class Add extends Component {
 						<input
 							type="file"
 							name="img"
-							value={this.state.data.img}
-							onChange={this.formOnChange}
+							onChange={this.handlerFile}
 							className="custom-file-input"
 							id="customFile"
 						/>
@@ -202,19 +210,19 @@ class Add extends Component {
 							className="custom-file-label"
 							htmlFor="customFile"
 						>
-							Expert Profile Image
+							{this.state.data.img || 'Expert Profile Image'}
 						</label>
 					</div>
 				</div>
 
-				<h3 className='mt-5 mb-3'>Tutorial Information</h3>
+				<h3 className="mt-5 mb-3">Tutorial Information</h3>
 				<div className="form-group">
 					<label>Title</label>
 					<input
 						type="text"
 						name="title"
-						value={this.state.data.tutorial.title}
-						onChange={this.formOnChangeTutorial}
+						value={this.state.data.title}
+						onChange={this.formOnChange}
 						className={
 							this.state.errors && this.state.errors.title
 								? 'form-control is-invalid'
@@ -232,8 +240,8 @@ class Add extends Component {
 					<input
 						type="number"
 						name="hours"
-						value={this.state.data.tutorial.hours}
-						onChange={this.formOnChangeTutorial}
+						value={this.state.data.hours}
+						onChange={this.formOnChange}
 						className={
 							this.state.errors && this.state.errors.hours
 								? 'form-control is-invalid'
@@ -251,8 +259,8 @@ class Add extends Component {
 					<input
 						type="number"
 						name="price"
-						value={this.state.data.tutorial.price}
-						onChange={this.formOnChangeTutorial}
+						value={this.state.data.price}
+						onChange={this.formOnChange}
 						className={
 							this.state.errors && this.state.errors.price
 								? 'form-control is-invalid'
@@ -269,8 +277,8 @@ class Add extends Component {
 					<label>Description</label>
 					<textarea
 						name="description"
-						value={this.state.data.tutorial.description}
-						onChange={this.formOnChangeTutorial}
+						value={this.state.data.description}
+						onChange={this.formOnChange}
 						className={
 							this.state.errors && this.state.errors.description
 								? 'form-control is-invalid'
@@ -291,12 +299,10 @@ class Add extends Component {
 						Save
 					</button>
 				</div>
+				{this.state.succeed && <Redirect to='/'/>}
 			</div>
 		);
 	}
 }
 
-export default connect(
-	null,
-	{ title }
-)(Add);
+export default connect(null, { title })(Add);

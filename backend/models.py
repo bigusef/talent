@@ -6,7 +6,8 @@ from datetime import datetime
 
 def upload_dir(instance, filename):
     _today = datetime.now().strftime('%m%d%Y')
-    return f'profile_img/{instance.pk}_{_today}_{filename}'
+    _id = instance.pk or 'new'
+    return f'profile_img/{_id}_{_today}_{filename}'
 
 
 class Expert(models.Model):
