@@ -46,7 +46,7 @@ class Add extends Component {
 		});
 	};
 
-	handlerFile = e => this.setState({ ...this.state.data, img: e.target.files[0] });
+	handlerFile = e => this.setState({img: e.target.files[0] });
 
 	validateDate = () => {
 		const { data } = this.state;
@@ -97,7 +97,7 @@ class Add extends Component {
 
 			return;
 		}
-
+		
 		const formData = new FormData();
 		formData.append('name', this.state.data.name);
 		formData.append('university', this.state.data.university);
@@ -108,13 +108,12 @@ class Add extends Component {
 		formData.append('tutorial.price', this.state.data.price);
 		formData.append('tutorial.description', this.state.data.description);
 
-		if(this.state.data.img) {
-			formData.append('img', this.state.data.img);
+		if(this.state.img) {
+			formData.append('img', this.state.img);
 		}
 
 		axios.defaults.xsrfCookieName = 'csrftoken';
 		axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-		console.log(this.state.data.img);
 		
 		axios.post('api/', formData)
 			.then(res => {
