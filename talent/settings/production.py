@@ -1,4 +1,5 @@
 from .base import *
+import django_heroku
 
 DEBUG = False
 
@@ -10,3 +11,12 @@ WEBPACK_LOADER = {
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.prod.json'),
     }
 }
+
+
+django_heroku.settings(locals())
+
+MIDDLEWARE += [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

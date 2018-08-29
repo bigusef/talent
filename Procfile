@@ -1,0 +1,1 @@
+web: gunicorn talent.wsgi --log-file -
