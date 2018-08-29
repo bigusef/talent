@@ -1,5 +1,5 @@
 # Talent
-this Django app With ReactJS intgration
+this Django app With ReactJS integration
 
 ### Used Tech
 - Python 3
