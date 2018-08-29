@@ -22,8 +22,12 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('backend.urls')),
-    path('', TemplateView.as_view(template_name='index.html'))
 ]
 
 # add media files to url pattern
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# add react path to handel all othe links
+urlpatterns += [
+    re_path('', TemplateView.as_view(template_name='index.html'))
+]

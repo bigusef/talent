@@ -72,7 +72,7 @@ class List extends Component {
 		axios.defaults.xsrfCookieName = 'csrftoken';
 		axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 		axios
-			.delete(`api/${id}`)
+			.delete(`api/${id}/`)
 			.then(() => {
 				this.getListItem();
 			})
@@ -133,7 +133,7 @@ class List extends Component {
 					</div>
 					{this.getMoreBTN()}
 				</div>
-				{this.state.getEdit && <Redirect to='edit'/>}
+				{this.state.getEdit && <Redirect to='/edit'/>}
 			</div>
 		);
 	}

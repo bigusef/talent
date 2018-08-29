@@ -7,7 +7,7 @@ const Header = ({ title }) => {
 			<div className="row justify-content-center">
 				<div className="col-9">
 					<h1>
-						<a href='/'>Tanelts</a>
+						<span>Tanelts</span>
 						<small>{title}</small>
 					</h1>
 				</div>
