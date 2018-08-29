@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import List from './components/list/List';
 import Add from './components/add/Add';
+import Edit from './components/edit/Edit';
 
 class App extends Component {
 	render() {
@@ -16,6 +17,7 @@ class App extends Component {
 							<Switch>
 								<Route exact path="/" component={List} />
 								<Route exact path="/add" component={Add} />
+								<Route exact path="/edit" component={Edit} />
 							</Switch>
 						</BrowserRouter>
 					</div>

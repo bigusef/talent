@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import StarRatings from 'react-star-ratings';
 import TextTruncate from 'react-text-truncate';
 
 import './card.scss';
 import avartarImg from '../../images/avatar.png';
 
-const Card = ({person}) => {
+const Card = ({person, onDelete, onEdit}) => {
     const get_avatar = (img) => img?<img alt={person.name} className='avatar' src={img} />:<img alt={person.name} className='avatar' src={avartarImg} />
 
     return (
@@ -43,8 +42,8 @@ const Card = ({person}) => {
                     <span>/h</span>
                 </span>
                 <div className='action-btn'>
-                    <Link className='flaticon-edit' to="/add"></Link>
-                    <span className='flaticon-remove'></span>
+                    <button className='flaticon-edit' onClick={()=>onEdit(person)}></button>
+                    <button className='flaticon-remove' onClick={()=>onDelete(person.pk)}></button>
                 </div>
             </div>
         </div>

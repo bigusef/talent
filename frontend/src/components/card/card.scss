@@ -73,13 +73,16 @@
 	.action-btn {
 		margin-top: auto;
 
-		& > a,
-		& > span {
+		& > button {
+            border: none;
+            outline: none;
+            box-shadow: 0;
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
 			width: 50px;
             height: 50px;
+            cursor: pointer;
             &:before {
                 font-size: $font-size-title;
             }
@@ -89,15 +92,11 @@
 			background-color: $color-success;
 			color: $color-light;
             margin: 0 10px;
-            text-decoration: none;
         }
         
 		.flaticon-remove {
 			background-color: $color-danger;
 			color: $color-light;
-			border: none;
-            box-shadow: none;
-            cursor: pointer;
 		}
 	}
 }

@@ -103,16 +103,20 @@ class Add extends Component {
 		formData.append('university', this.state.data.university);
 		formData.append('department', this.state.data.department);
 		formData.append('rate', this.state.data.rate);
-		formData.append('img', this.state.img);
 		formData.append('tutorial.title', this.state.data.title);
 		formData.append('tutorial.hours', this.state.data.hours);
 		formData.append('tutorial.price', this.state.data.price);
 		formData.append('tutorial.description', this.state.data.description);
 
+		if(this.state.data.img) {
+			formData.append('img', this.state.data.img);
+		}
+
 		axios.defaults.xsrfCookieName = 'csrftoken';
 		axios.defaults.xsrfHeaderName = 'X-CSRFToken';
-		axios
-			.post('api/', formData)
+		console.log(this.state.data.img);
+		
+		axios.post('api/', formData)
 			.then(res => {
 				this.setState({
 					succeed: true
