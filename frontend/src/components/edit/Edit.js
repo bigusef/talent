@@ -116,12 +116,16 @@ class Edit extends Component {
 
 		axios.put(`api/${this.props.expert.pk}/`, formData)
 			.then(res => {
-				this.setState({
-					succeed: true
-				});
+				this.redirect()
 			})
 			.catch(error => console.log(error));
 	};
+
+	redirect = () => {
+		this.setState({
+			succeed: true
+		});
+	}
 
 	render() {
 		return (
@@ -292,7 +296,7 @@ class Edit extends Component {
 						{this.state.errors && this.state.errors.description}
 					</div>
 				</div>
-				<div className="form-group text-right">
+				<div className="form-group d-flex">
 					<button
 						type="button"
 						onClick={this.addExpert}
@@ -300,6 +304,7 @@ class Edit extends Component {
 					>
 						Save
 					</button>
+					<button type='button' onClick={this.redirect} className="btn btn-lg btn-secondary ml-auto">Cancel</button>
 				</div>
 				{this.state.succeed && <Redirect to="/" />}
 			</div>

@@ -117,12 +117,16 @@ class Add extends Component {
 		
 		axios.post('api/', formData)
 			.then(res => {
-				this.setState({
-					succeed: true
-				})
+				this.redirect();
 			})
 			.catch(error => console.log(error));
 	};
+
+	redirect = () => {
+		this.setState({
+			succeed: true
+		});
+	}
 
 	render() {
 		return (
@@ -293,7 +297,7 @@ class Add extends Component {
 						{this.state.errors && this.state.errors.description}
 					</div>
 				</div>
-				<div className="form-group text-right">
+				<div className="form-group d-flex">
 					<button
 						type="button"
 						onClick={this.addExpert}
@@ -301,6 +305,7 @@ class Add extends Component {
 					>
 						Save
 					</button>
+					<button type='button' onClick={this.redirect} className="btn btn-lg btn-secondary ml-auto">Cancel</button>
 				</div>
 				{this.state.succeed && <Redirect to='/'/>}
 			</div>
