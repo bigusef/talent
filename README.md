@@ -21,14 +21,35 @@ $ python3 -m venv .env
 $ source .env/bin/active
 $ git clone git@github.com:mudyou/Talent.git .
 $ pip install -r requirements.txt
+```
+
+* Need to add local.py file to hoald local settings
+```
+$ cd talents/settings
+$ touch local.py
+```
+
+* add this line to local.py
+```
+from .base import *
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.dev.json'),
+    }
+}
+```
+
+* then migrate and create super user
+```
 $ python manage.py makemigrations
 $ python manage.py migrate
 $ python manage.py createsuperuser
 $ python manage.py runserver
 ```
 
-then on open another terminal tap
-
+* then on open another terminal tap
 ```
 $ cd path/to/your/dev/folder
 $ cd talents
