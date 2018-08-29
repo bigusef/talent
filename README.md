@@ -1,4 +1,4 @@
-# Tanelt
+# Talent
 this Django app With ReactJS intgration
 
 ### Used Tech
